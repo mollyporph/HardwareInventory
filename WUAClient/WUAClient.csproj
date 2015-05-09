@@ -120,6 +120,7 @@
       <DependentUpon>LoginUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\LoanItemExpandHandler.cs" />
+    <Compile Include="Utilities\VisualTreeTraverser.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -23,10 +23,8 @@
                 <ColumnDefinition Width="60*"></ColumnDefinition>
                 <ColumnDefinition Width="40*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" Margin="0,0,0,50" FontFamily="Consolas" Text="HardWare Inventory"></TextBlock>-->
             <usercontrols:LoginUserControl x:Name="LoginUserControl" Margin="0,0,40,0" Height="150" Grid.Column="1"/>
         </Grid>
         
-        <!---->
     </Grid>
 </Page>
