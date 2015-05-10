@@ -95,12 +95,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="Datamodel\CrewMember.cs" />
     <Compile Include="Datamodel\HardwareItem.cs" />
     <Compile Include="Datamodel\LoanItem.cs" />
     <Compile Include="Datamodel\LoginViewModel.cs" />
     <Compile Include="Datamodel\RegistrationRequest.cs" />
     <Compile Include="Datamodel\TeamLoanItemRowViewModelcs.cs" />
     <Compile Include="Datamodel\TeamLoanViewModel.cs" />
+    <Compile Include="Pages\AddLoanPage.xaml.cs">
+      <DependentUpon>AddLoanPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ListLoansPage.xaml.cs">
       <DependentUpon>ListLoansPage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\AddLoanPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListLoansPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

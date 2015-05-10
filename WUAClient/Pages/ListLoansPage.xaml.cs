@@ -61,5 +61,13 @@ namespace HardwareInventory.Pages
             var teamName = teamLoanViewModel.TeamName;
             this.Frame.Navigate(typeof(TeamDetailsPage), teamName);
         }
+
+        private void BackButton_Pressed(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+        }
     }
 }

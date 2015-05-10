@@ -9,12 +9,14 @@
     >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-
-        <Button Click="JustNeedAbutton">Clicky</Button>
+        <StackPanel>
+            <Button Click="JustNeedAbutton">Clicky</Button>
+            <Button Click="GotoAddLoanPage">LoanPage</Button>
+        </StackPanel>
     </Grid>
 </Page>

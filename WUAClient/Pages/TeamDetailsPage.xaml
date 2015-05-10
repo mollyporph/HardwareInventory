@@ -12,38 +12,44 @@
             <TextBlock Margin="20,10,10,10"  HorizontalAlignment="Left" Text="{Binding Item.Name}"/>
         </DataTemplate>
     </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="../Assets/DreamHack-logo-bg.png" Stretch="Uniform"/>
+                </StackPanel.Background>
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
-            <StackPanel.Background>
-                <ImageBrush ImageSource="../Assets/DreamHack-logo-bg.png" Stretch="Uniform"/>
-            </StackPanel.Background>
-
-            <TextBlock x:Name="teamNameTextBlock" FontSize="45" Foreground="GhostWhite" HorizontalAlignment="Center" Margin="0,0,30,0"></TextBlock>
-            <ItemsControl x:Name="loanList" Margin="15" HorizontalAlignment="Stretch">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel HorizontalAlignment="Stretch">
-                            <StackPanel Margin="0,20,0,0">
-                                <Grid HorizontalAlignment="Stretch">
-                                    <TextBlock  HorizontalAlignment="Left" Text="{Binding Key}"/>
-                                    <HyperlinkButton  HorizontalAlignment="Right" Click="ReturnItemsForUser" Foreground="GhostWhite">Return these</HyperlinkButton>
-                                </Grid>
-                                <Border x:Name="bordermenu" BorderBrush="DarkGray" BorderThickness="1" Margin="20">
-                                    <ListView ItemsSource="{Binding}" ItemTemplate="{StaticResource LoanItemListTemplate}" HorizontalAlignment="Stretch" SelectionMode="Multiple" >
-                                        <ListView.ItemContainerStyle>
-                                            <Style TargetType="ListViewItem">
-                                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                            </Style>
-                                        </ListView.ItemContainerStyle>
-                                    </ListView>
-                                </Border>
+                <TextBlock x:Name="teamNameTextBlock" FontSize="45" Foreground="GhostWhite" HorizontalAlignment="Center" Margin="0,0,30,0"></TextBlock>
+                <ItemsControl x:Name="loanList" Margin="15" HorizontalAlignment="Stretch">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <StackPanel Margin="0,20,0,0">
+                                    <Grid HorizontalAlignment="Stretch">
+                                        <TextBlock  HorizontalAlignment="Left" Text="{Binding Key}"/>
+                                        <HyperlinkButton  HorizontalAlignment="Right" Click="ReturnItemsForUser" Foreground="GhostWhite">Return these</HyperlinkButton>
+                                    </Grid>
+                                    <Border x:Name="bordermenu" BorderBrush="DarkGray" BorderThickness="1" Margin="20">
+                                        <ListView ItemsSource="{Binding}" ItemTemplate="{StaticResource LoanItemListTemplate}" HorizontalAlignment="Stretch" SelectionMode="Multiple" >
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem">
+                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                        </ListView>
+                                    </Border>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <HyperlinkButton Foreground="GhostWhite" Margin="30" HorizontalAlignment="Right" Click="ReturnSelected">Return selected</HyperlinkButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <HyperlinkButton Foreground="GhostWhite" Margin="30" HorizontalAlignment="Right" Click="ReturnSelected">Return selected</HyperlinkButton>
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+        <HyperlinkButton Margin="20" Grid.Row="1" Click="BackButton_Pressed" Foreground="GhostWhite" FontSize="18">&lt; Back</HyperlinkButton>
+    </Grid>
 </Page>

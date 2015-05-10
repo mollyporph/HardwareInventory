@@ -7,21 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Loaded="ListLoansPage_OnLoaded">
-<Page.Resources>
-     <DataTemplate x:Key="TextTileLandingTemplate">
-                    <Grid Background="DarkGray" Width="200" Height="150" >
-               <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,0,0,10">
-                        <TextBlock HorizontalAlignment="Center" Foreground="Black" Margin="10,0,0,0"  FontSize="20" Text="{Binding TeamName}" MinWidth="80" VerticalAlignment="Top"/>
+    <Page.Resources>
+        <DataTemplate x:Key="TextTileLandingTemplate">
+            <Grid Background="DarkGray" Width="200" Height="150" >
+                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                    <TextBlock HorizontalAlignment="Center" Foreground="Black" Margin="10,0,0,0"  FontSize="20" Text="{Binding TeamName}" MinWidth="80" VerticalAlignment="Top"/>
                     <Grid HorizontalAlignment="Center" Width="75" Height="75">
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"  FontSize="60" Text="{Binding LoanItemCount}"/>
-                            </Grid>
-                            <!--TODO: Fix nicer counter-->
-                       </StackPanel>
-                        </Grid>
-                   </DataTemplate>
-</Page.Resources>
+                    </Grid>
+                    <!--TODO: Fix nicer counter-->
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
         <GridView x:Name="GridView"
+                  Grid.Row="0"
                   IsItemClickEnabled="True"
                   Margin="50" 
                   ItemTemplate="{StaticResource TextTileLandingTemplate}"
@@ -33,5 +38,6 @@
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
+      <HyperlinkButton Margin="20" Grid.Row="1" Click="BackButton_Pressed" Foreground="GhostWhite" FontSize="18">&lt; Back</HyperlinkButton>
     </Grid>
 </Page>

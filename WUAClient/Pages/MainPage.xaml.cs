@@ -45,5 +45,10 @@ namespace HardwareInventory.Pages
         {
             this.Frame.Navigate(typeof (ListLoansPage));
         }
+
+        private void GotoAddLoanPage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (AddLoanPage));
+        }
     }
 }

@@ -64,6 +64,13 @@ namespace HardwareInventory.Pages
 
         }
 
+        private void BackButton_Pressed(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+        }
         private async Task ReturnItems(IEnumerable<LoanItem> loanItems)
         {
             var selectedLoanItems = loanItems as LoanItem[] ?? loanItems.ToArray();
