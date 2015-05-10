@@ -21,7 +21,10 @@ namespace HardwareInventory.Repository
         {
             return await LoanTable.Where(x => x.TeamName == TeamName && x.IsReturned == IncludeReturned).ToListAsync();
         }
-
+        public static async Task<IEnumerable<LoanItem>> GetLoanItemsForUser(string UserName, bool IncludeReturned = false)
+        {
+            return await LoanTable.Where(x => x.LoanedBy == UserName && x.IsReturned == IncludeReturned).ToListAsync();
+        }
         public static async Task<LoanItem> GetLoanItem(string Id)
         {
             return await LoanTable.LookupAsync(Id);

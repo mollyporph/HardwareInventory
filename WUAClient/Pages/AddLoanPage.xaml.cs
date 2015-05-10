@@ -18,6 +18,7 @@ using HardwareInventory.Datamodel;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HardwareInventory.Repository;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -43,16 +44,20 @@ namespace HardwareInventory.Pages
         public async Task SearchUserId(int userId)
         {
             var result = await App.MobileService.InvokeApiAsync<CrewMember>("CustomCrewMember", HttpMethod.Get, new Dictionary<string, string> { { "id", userId.ToString() } });
-            SetCrewPanel(result);
+            await SetCrewPanel(result);
         }
         public async Task SearchUsername(string username)
         {
             var result = await App.MobileService.InvokeApiAsync<CrewMember>("CustomCrewMember", HttpMethod.Get, new Dictionary<string, string> { { "username", username } });
-            SetCrewPanel(result);
+            await SetCrewPanel(result);
         }
 
-        private void SetCrewPanel(CrewMember result)
+        private async Task SetCrewPanel(CrewMember result)
         {
+            if (result.username != null)
+            {
+                await LoadPreviousLoanData(result.username);
+            }
             usernameTextBlock.Text = result.username ?? "N/A";
             nameTextBlock.Text = $"{result.firstname ?? "N/A"} {result.lastname ?? "N/A"}";
             BitmapImage bitmap;
@@ -69,7 +74,13 @@ namespace HardwareInventory.Pages
             badgeImage.Source = bitmap;
         }
 
-        
+        private async Task LoadPreviousLoanData(string username)
+        {
+           var loanItems = await LoanRepository.GetLoanItemsForUser(username);
+           
+        }
+
+
         public async void SearchBox_OnQuerySubmitted(SearchBox sb, SearchBoxQuerySubmittedEventArgs se)
         {
             userPanel.Visibility = Visibility.Collapsed;
