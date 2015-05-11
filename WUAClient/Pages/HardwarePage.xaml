@@ -10,13 +10,13 @@
     <Page.Resources>
 
         <DataTemplate x:Key="ImageOverlayLandingDataTemplate">
-            <Grid Background="#FF939598" Height="250" Width="350">
+            <Grid Background="#FF939598" Height="150" Width="250">
                 <Image Source="{Binding ImageUrl}"  Stretch="UniformToFill"/>
-                <StackPanel Orientation="Vertical" Background="#CC000000" 
-                    Height="90" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical" Background="#CC000000"  
+                    Height="62" VerticalAlignment="Bottom">
                     <TextBlock Text="{Binding Name}" 
-                       Margin="10,3,0,0" Width="242" Height="62" 
-                       TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18"/>
+                       Margin="10,3,0,0" Width="249" Height="42" 
+                       TextTrimming="WordEllipsis" TextWrapping="Wrap"  FontSize="24" />
 
                 </StackPanel>
             </Grid>
@@ -27,12 +27,23 @@
         <RowDefinition Height="90*"/>
         <RowDefinition Height="10*"/>
     </Grid.RowDefinitions>
-        <StackPanel>
         <AppBarButton HorizontalAlignment="Right" Icon="Refresh" Label="Refresh"  Click="RefreshButton_Click"/>
-        <GridView Grid.Row="0" x:Name="itemGrid" 
+        <StackPanel Grid.Row="0" Margin="20">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="filterTextbox" TextChanged="FilterTextBox_TextChanged" PlaceholderText="Filter..." Width="250" Height="18"/>
+                   
+            </StackPanel>
+     
+        <GridView Margin="10" x:Name="itemGrid" 
           ItemClick="HardwareItem_OnItemClick"
           ItemTemplate="{StaticResource ImageOverlayLandingDataTemplate}" >
+             <GridView.ItemContainerStyle>
+                 <Style TargetType="FrameworkElement">
+                     <Setter Property="Margin" Value="0,0,20,20"/>
+                 </Style>
+             </GridView.ItemContainerStyle>
             <GridView.ItemsPanel>
+               
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid MaximumRowsOrColumns="4"/>
                 </ItemsPanelTemplate>

@@ -66,13 +66,13 @@ namespace dhcchardwareService
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = "TP Kabel",
-                ImageUrl = "Something"
+                ImageUrl = "http://webbutik.kabona.com/images/TP-kabel.jpg"
             });
             var hwItemPersistedScreen = context.Set<HardwareItemDTO>().Add(new HardwareItemDTO
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = "Skärm",
-                ImageUrl = "Something"
+                ImageUrl = "http://www.bestbuy.ca/multimedia/Products/500x500/102/10284/10284803.jpg"
             });
 
             context.Set<LoanItemDTO>().Add(new LoanItemDTO
