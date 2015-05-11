@@ -76,7 +76,8 @@ namespace dhcchardwareService
             request.Headers["Authorization"] = AuthHeader;
             var response = (HttpWebResponse)request.GetResponse();
             var result = ReadHttpResponseString(response);
-            return result == "false" ? new CrewMember() : JsonConvert.DeserializeObject<IEnumerable<CrewMember>>(result).FirstOrDefault();
+            var crewMember = result == "false" ? new CrewMember() : JsonConvert.DeserializeObject<IEnumerable<CrewMember>>(result).FirstOrDefault();
+            return crewMember;
         }
     }
 }

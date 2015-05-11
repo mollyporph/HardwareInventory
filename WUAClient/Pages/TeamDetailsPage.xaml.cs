@@ -27,6 +27,7 @@ namespace HardwareInventory.Pages
     /// </summary>
     public sealed partial class TeamDetailsPage : Page
     {
+
         private TeamLoanViewModel viewModel;
         public static string TeamName;
         private IEnumerable<LoanItem> _selectedLoanItems = new List<LoanItem>();
@@ -37,6 +38,7 @@ namespace HardwareInventory.Pages
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             TeamName = e.Parameter as string;
+            if (TeamName == null) return;
             teamNameTextBlock.Text = TeamName;
             await RefreshViewModel();
         }

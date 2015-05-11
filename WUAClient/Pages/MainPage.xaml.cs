@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using HardwareInventory.Menu;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -30,25 +31,19 @@ namespace HardwareInventory.Pages
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
+       
         private MobileServiceUser user;
         public MainPage()
         {
 
             this.InitializeComponent();
-            
+            this.GridView.ItemsSource = NavigationHandler.MenuItems;
 
         }
-       
-   
-        private void JustNeedAbutton(object sender, RoutedEventArgs e)
+        private void GridViewItemClick(object sender, ItemClickEventArgs e)
         {
-            this.Frame.Navigate(typeof (ListLoansPage));
-        }
-
-        private void GotoAddLoanPage(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof (AddLoanPage));
+            var menuCommand = e.ClickedItem as MenuItem;
+            if (menuCommand != null) NavigationHandler.Navigate(menuCommand.Command,Frame);
         }
     }
 }

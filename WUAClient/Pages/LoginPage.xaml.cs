@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using HardwareInventory.Datamodel;
+using HardwareInventory.Menu;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -30,12 +31,12 @@ namespace HardwareInventory.Pages
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        private LoginViewModel LoginViewModel = new LoginViewModel();
-        private MobileServiceUser user;
+        private readonly LoginViewModel _loginViewModel = new LoginViewModel();
+        private MobileServiceUser _user;
         public LoginPage()
         {
             this.InitializeComponent();
-            this.LoginUserControl.DataContext = LoginViewModel;
+            this.LoginUserControl.DataContext = _loginViewModel;
         }
         private async void OnKeyDownHandler(object sender, KeyRoutedEventArgs e)
         {
@@ -49,37 +50,27 @@ namespace HardwareInventory.Pages
         {
             var credentials = new AccountModel
             {
-                username = LoginViewModel.Username,
-                password = LoginViewModel.Password
+                username = _loginViewModel.Username,
+                password = _loginViewModel.Password
             };
 
             try
             {
                 var jTokenResult = await App.MobileService
                     .InvokeApiAsync("CustomLogin", JToken.FromObject(credentials));
-                user = JsonConvert.DeserializeObject<MobileServiceUser>(jTokenResult.ToString());  
+                _user = JsonConvert.DeserializeObject<MobileServiceUser>(jTokenResult.ToString());  
             }
             catch (InvalidOperationException)
             {
-                LoginViewModel.ValidationErrorMessage = "Wrong username or password entered.";
-                LoginViewModel.ValidationFailed = true;
+                _loginViewModel.ValidationErrorMessage = "Wrong username or password entered.";
+                _loginViewModel.ValidationFailed = true;
 
             }
-            if(user != null)
+            if(_user != null)
             {
-                App.MobileService.CurrentUser = user;
-                this.Frame.Navigate(typeof (MainPage));
+                App.MobileService.CurrentUser = _user;
+                NavigationHandler.Navigate(NavigationCommand.Home, Frame);
             }
-        }
-
-        public async void CreateAccount(object sende, RoutedEventArgs e)
-        {
-            var credentials = new AccountModel
-            {
-                username = "test",
-                password = "TestingStuff"
-            };
-            await App.MobileService.InvokeApiAsync("CustomRegistration", JToken.FromObject(credentials));
         }
     }
 }

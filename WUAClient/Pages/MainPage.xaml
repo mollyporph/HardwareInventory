@@ -7,16 +7,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     >
-
+ <Page.Resources>
+        <DataTemplate x:Key="TextTileLandingTemplate">
+            <Grid Background="DarkGray" Width="200" Height="150" >
+                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                    <TextBlock HorizontalAlignment="Center" Foreground="Black" Margin="10,0,0,0"  FontSize="20" Text="{Binding FriendlyName}" MinWidth="80" VerticalAlignment="Top"/>
+                    <!--TODO: Fix nicer counter-->
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="80*"/>
-        </Grid.RowDefinitions>
-        <StackPanel>
-            <Button Click="JustNeedAbutton">Clicky</Button>
-            <Button Click="GotoAddLoanPage">LoanPage</Button>
-        </StackPanel>
+        <GridView x:Name="GridView"
+                  Grid.Row="0"
+                  IsItemClickEnabled="True"
+                  Margin="50" 
+                  ItemTemplate="{StaticResource TextTileLandingTemplate}"
+                  SelectionMode="None"
+                  ItemClick="GridViewItemClick">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid MaximumRowsOrColumns="3"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
     </Grid>
 </Page>

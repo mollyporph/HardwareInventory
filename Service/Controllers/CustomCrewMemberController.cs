@@ -25,7 +25,8 @@ namespace dhcchardwareService.Controllers
         {
             using (var client = new DhccService())
             {
-                return client.GetCrewMember(username);
+                var crewMember = client.GetCrewMember(username);
+                return crewMember;
             }
         }
 

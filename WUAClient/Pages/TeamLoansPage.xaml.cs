@@ -23,9 +23,9 @@ namespace HardwareInventory.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ListLoansPage : Page
+    public sealed partial class TeamLoanPage : Page
     {
-        public ListLoansPage()
+        public TeamLoanPage()
         {
             this.InitializeComponent();
            
@@ -33,7 +33,7 @@ namespace HardwareInventory.Pages
         }
 
 
-        private async void ListLoansPage_OnLoaded(object sender, RoutedEventArgs e)
+        private async void TeamLoanPage_OnLoaded(object sender, RoutedEventArgs e)
         {
             //TODO: autoload
             this.GridView.ItemsSource = await GetLoanPerTeam();

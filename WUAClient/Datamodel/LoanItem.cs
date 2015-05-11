@@ -15,7 +15,7 @@ namespace HardwareInventory.Datamodel
         [JsonProperty(PropertyName = "TeamName")]
         public string TeamName { get; set; }
 
-        [JsonProperty(PropertyName = "Loanedby")]
+        [JsonProperty(PropertyName = "LoanedBy")]
         public string LoanedBy { get; set; }
         [JsonProperty(PropertyName = "IsReturned")]
         public bool IsReturned { get; set; }
