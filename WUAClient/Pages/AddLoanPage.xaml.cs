@@ -92,5 +92,13 @@ namespace HardwareInventory.Pages
             }
             userPanel.Visibility = Visibility.Visible;
         }
+
+        public void BackButton_Pressed(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+        }
     }
 }

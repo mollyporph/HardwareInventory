@@ -37,13 +37,13 @@ namespace HardwareInventory.Pages
         {
 
             this.InitializeComponent();
-            this.GridView.ItemsSource = NavigationHandler.MenuItems;
+            this.GridView.ItemsSource = NavigationManager.MenuItems;
 
         }
         private void GridViewItemClick(object sender, ItemClickEventArgs e)
         {
             var menuCommand = e.ClickedItem as MenuItem;
-            if (menuCommand != null) NavigationHandler.Navigate(menuCommand.Command,Frame);
+            if (menuCommand != null) NavigationManager.Navigate(menuCommand.Command,Frame);
         }
     }
 }

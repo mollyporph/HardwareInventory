@@ -10,10 +10,11 @@ namespace HardwareInventory.Datamodel
     {
         Home,
         NewLoan,
-        InventoryList,
+        HardwareItemList,
         TeamLoanOverview,
         TeamDetails,
-        UserDetails
+        UserDetails,
+        HardwareItemDetails
     }
     public class MenuItem
     {

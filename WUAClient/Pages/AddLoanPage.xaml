@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <StackPanel  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
         <Grid Margin="30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
@@ -29,6 +30,10 @@
                 </StackPanel>
                 <Image HorizontalAlignment="Left" x:Name="badgeImage" Stretch="None"></Image>
             </StackPanel>
+            
         </Grid>
-    </StackPanel>
+        </StackPanel>
+        <AppBarButton VerticalAlignment="Bottom" Icon="Back" Label="Back" Margin="20,0,0,10" Click="BackButton_Pressed"></AppBarButton>
+        
+    </Grid>
 </Page>

@@ -69,7 +69,7 @@ namespace HardwareInventory.Pages
             if(_user != null)
             {
                 App.MobileService.CurrentUser = _user;
-                NavigationHandler.Navigate(NavigationCommand.Home, Frame);
+                NavigationManager.Navigate(NavigationCommand.Home, Frame);
             }
         }
     }

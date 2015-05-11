@@ -38,6 +38,6 @@
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
-      <HyperlinkButton Margin="20" Grid.Row="1" Click="BackButton_Pressed" Foreground="GhostWhite" FontSize="18">&lt; Back</HyperlinkButton>
+        <AppBarButton Grid.Row="1" Icon="Back" Label="Back" Margin="20,0,0,0" Click="BackButton_Pressed"></AppBarButton>
     </Grid>
 </Page>

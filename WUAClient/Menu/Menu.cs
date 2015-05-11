@@ -6,8 +6,8 @@ using HardwareInventory.Pages;
 
 namespace HardwareInventory.Menu
 {
-   
-    public class NavigationHandler
+
+    public class NavigationManager
     {
         public static IEnumerable<MenuItem> MenuItems = new List<MenuItem>()
         {
@@ -18,7 +18,7 @@ namespace HardwareInventory.Menu
             },
             new MenuItem
             {
-                Command = NavigationCommand.InventoryList,
+                Command = NavigationCommand.HardwareItemList,
                 FriendlyName = "Inventory"
             },
             new MenuItem
@@ -41,21 +41,27 @@ namespace HardwareInventory.Menu
                 Command = NavigationCommand.UserDetails,
                 FriendlyName = "Loans For User"
             }
+            ,
+            new MenuItem
+            {
+                Command = NavigationCommand.HardwareItemDetails,
+                FriendlyName = "Item Details"
+            }
         };
 
-        public static void Navigate(NavigationCommand navigationCommand, Frame frame,object navigationData = null)
+        public static void Navigate(NavigationCommand navigationCommand, Frame frame, object navigationData = null)
         {
             switch (navigationCommand)
             {
                 case NavigationCommand.Home:
-                    frame.Navigate(typeof (MainPage), navigationData);
+                    frame.Navigate(typeof(MainPage), navigationData);
                     break;
                 case NavigationCommand.NewLoan:
                     frame.Navigate(typeof(AddLoanPage), navigationData);
                     break;
-                case NavigationCommand.InventoryList:
-                    throw new ArgumentException("Not implemented yet");
-
+                case NavigationCommand.HardwareItemList:
+                    frame.Navigate(typeof(HardwarePage), navigationData);
+                    break;
                 case NavigationCommand.TeamLoanOverview:
                     frame.Navigate(typeof(TeamLoanPage), navigationData);
                     break;

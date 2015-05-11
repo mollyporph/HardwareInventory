@@ -107,6 +107,9 @@
     <Compile Include="Pages\AddLoanPage.xaml.cs">
       <DependentUpon>AddLoanPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HardwarePage.xaml.cs">
+      <DependentUpon>HardwarePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TeamLoansPage.xaml.cs">
       <DependentUpon>TeamLoansPage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Pages\AddLoanPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HardwarePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
