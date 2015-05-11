@@ -19,6 +19,7 @@
     </Page.Resources>
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Margin="10" HorizontalAlignment="Right">Temporary Menu</TextBlock>
         <GridView x:Name="GridView"
                   Grid.Row="0"
                   IsItemClickEnabled="True"
