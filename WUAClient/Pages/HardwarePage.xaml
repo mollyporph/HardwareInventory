@@ -23,34 +23,35 @@
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid.RowDefinitions>
-        <RowDefinition Height="90*"/>
-        <RowDefinition Height="10*"/>
-    </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
         <AppBarButton HorizontalAlignment="Right" Icon="Refresh" Label="Refresh"  Click="RefreshButton_Click"/>
         <StackPanel Grid.Row="0" Margin="20">
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="filterTextbox" TextChanged="FilterTextBox_TextChanged" PlaceholderText="Filter..." Width="250" Height="18"/>
-                   
+
             </StackPanel>
-     
-        <GridView Margin="10" x:Name="itemGrid" 
+
+            <GridView Margin="10" x:Name="itemGrid"
+                  IsItemClickEnabled="True"
           ItemClick="HardwareItem_OnItemClick"
           ItemTemplate="{StaticResource ImageOverlayLandingDataTemplate}" >
-             <GridView.ItemContainerStyle>
-                 <Style TargetType="FrameworkElement">
-                     <Setter Property="Margin" Value="0,0,20,20"/>
-                 </Style>
-             </GridView.ItemContainerStyle>
-            <GridView.ItemsPanel>
-               
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid MaximumRowsOrColumns="4"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
-            </StackPanel>
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="FrameworkElement">
+                        <Setter Property="Margin" Value="0,0,20,20"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridView.ItemsPanel>
+
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="4"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+        </StackPanel>
         <AppBarButton Grid.Row="1" Icon="Back" Label="Back" Margin="20,0,0,0" Click="BackButton_Pressed"></AppBarButton>
-          
+
     </Grid>
 </Page>

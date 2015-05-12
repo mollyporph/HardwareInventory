@@ -62,6 +62,9 @@ namespace HardwareInventory.Menu
                 case NavigationCommand.HardwareItemList:
                     frame.Navigate(typeof(HardwarePage), navigationData);
                     break;
+                case NavigationCommand.HardwareItemDetails:
+                    frame.Navigate(typeof(HardwareDetailsPage), navigationData);
+                    break;
                 case NavigationCommand.TeamLoanOverview:
                     frame.Navigate(typeof(TeamLoanPage), navigationData);
                     break;

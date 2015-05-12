@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="HardwareInventory.Pages.HardwareDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HardwareInventory.Pages"
+    xmlns:l="using:HardwareInventory.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+<Page.Resources>
+        <DataTemplate x:Key="TextTileLandingTemplate">
+            <Grid Background="DarkGray" Width="250" Height="200" >
+                <Image Width="250" Height="200" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding}"/>
+            </Grid>
+        </DataTemplate>
+        <l:BoolToEditOrSaveConverter x:Key="BoolToEditOrSaveConverter" />
+        <l:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <l:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </Page.Resources>
+    
+    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="ItemImage"  Grid.Row="0" Grid.Column="0" Source="{Binding Item.ImageUrl}" Stretch="Uniform" Margin="10,10,0,0" MaxHeight="400" MaxWidth="400"></Image>
+       
+        <StackPanel Margin="10,0,0,0"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    x:Name="selectImagePanel"
+                    Orientation="Vertical"
+                    Visibility="{Binding IsEditMode,Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <StackPanel Orientation="Horizontal">
+                  <TextBlock VerticalAlignment="Center">Click a suggested image or enter one</TextBlock>
+                <HyperlinkButton Click="ManualEnterImageUrl" Margin="5,0,0,0" Foreground="GhostWhite">manually</HyperlinkButton>
+            </StackPanel>
+            <TextBox x:Name="manualImageUrlTextBox" Visibility="Collapsed" Text="{Binding Item.ImageUrl,Mode=TwoWay}" TextChanged="ManualImageUrlTextBox_TextChanged"></TextBox>
+       
+        <GridView x:Name="GoogleImageGrid"
+                  IsItemClickEnabled="True"
+                  ItemTemplate="{StaticResource TextTileLandingTemplate}"
+                  SelectionMode="None"
+                  VerticalAlignment="Top"
+                  ItemClick="GridViewItemClick"
+                 Height="600">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="2"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+            </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                <TextBlock Width="70">Name:</TextBlock>
+                <TextBox TextChanged="NameTextBox_TextChanged" Text="{Binding Item.Name,Mode=TwoWay}" IsReadOnly="{Binding IsEditMode,Converter={StaticResource InverseBooleanConverter}}" Width="150" BorderThickness="0" ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                <TextBlock Width="70">Category:</TextBlock>
+                <TextBox Text="{Binding Item.Category,Mode=TwoWay}" IsReadOnly="{Binding IsEditMode,Converter={StaticResource InverseBooleanConverter}}" Width="150" BorderThickness="0" ></TextBox>
+            </StackPanel>
+             <Button x:Name="EditOrSaveButton" Margin="20" VerticalAlignment="Center" Click="EnableEditOrSave" Content="{Binding IsEditMode,Converter={StaticResource BoolToEditOrSaveConverter}}"></Button>
+        </StackPanel>
+         <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Back" Label="Back" Margin="20,10,0,20" VerticalAlignment="Bottom" Click="BackButton_Pressed"></AppBarButton>
+    </Grid>
+</Page>
