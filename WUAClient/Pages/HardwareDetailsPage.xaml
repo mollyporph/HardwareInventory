@@ -6,6 +6,7 @@
     xmlns:l="using:HardwareInventory.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:System.Windows.Controls"
     mc:Ignorable="d">
 <Page.Resources>
         <DataTemplate x:Key="TextTileLandingTemplate">
@@ -17,7 +18,7 @@
         <l:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <l:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Page.Resources>
-    
+   
     <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -59,7 +60,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Margin="10">
             <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
                 <TextBlock Width="70">Name:</TextBlock>
-                <TextBox TextChanged="NameTextBox_TextChanged" Text="{Binding Item.Name,Mode=TwoWay}" IsReadOnly="{Binding IsEditMode,Converter={StaticResource InverseBooleanConverter}}" Width="150" BorderThickness="0" ></TextBox>
+                <TextBox x:Name="itemNameTextBox" TextChanged="NameTextBox_TextChanged" Text="{Binding Item.Name,Mode=TwoWay}" IsReadOnly="{Binding IsEditMode,Converter={StaticResource InverseBooleanConverter}}" Width="150" BorderThickness="0" ></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
                 <TextBlock Width="70">Category:</TextBlock>

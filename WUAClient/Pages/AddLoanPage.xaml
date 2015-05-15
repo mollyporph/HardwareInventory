@@ -13,25 +13,33 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="80*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="60*"/>
-            </Grid.ColumnDefinitions>
-            <SearchBox Grid.Column="0" Grid.Row="0"  x:Name="searchBox" PlaceholderText="Userid-number.." QuerySubmitted="SearchBox_OnQuerySubmitted"></SearchBox>
-            <StackPanel x:Name="userPanel" Grid.Row="1" Grid.Column="0" Orientation="Vertical" Visibility="Collapsed">
-                <HyperlinkButton Click="Dismiss" HorizontalAlignment="Right">X</HyperlinkButton>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock >Username:</TextBlock>
-                    <TextBlock Margin="10,0,0,0"  x:Name="usernameTextBlock"></TextBlock>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <SearchBox Grid.Column="0" Grid.Row="0"  x:Name="searchBox" PlaceholderText="Userid-number.." QuerySubmitted="SearchBox_OnQuerySubmitted"></SearchBox>
+                <StackPanel x:Name="userPanel" Grid.Row="1" Grid.Column="0" Orientation="Vertical" Visibility="Collapsed">
+                    <HyperlinkButton Click="Dismiss" HorizontalAlignment="Right">X</HyperlinkButton>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock >Username:</TextBlock>
+                        <TextBlock Margin="10,0,0,0"  x:Name="usernameTextBlock"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Name:</TextBlock>
+                        <TextBlock  Margin="10,0,0,0"  x:Name="nameTextBlock"></TextBlock>
+                    </StackPanel>
+                    <Image HorizontalAlignment="Left" x:Name="badgeImage" Stretch="None"></Image>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>Name:</TextBlock>
-                    <TextBlock  Margin="10,0,0,0"  x:Name="nameTextBlock"></TextBlock>
-                </StackPanel>
-                <Image HorizontalAlignment="Left" x:Name="badgeImage" Stretch="None"></Image>
-            </StackPanel>
             
-        </Grid>
+            </Grid>
+            <ListView x:Name="itemList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBox Width="300" PlaceholderText="Itemname..." Text="{Binding Value, Mode=TwoWay}" KeyUp="ItemTextBox_KeyUp"></TextBox>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <AppBarButton Icon="Upload" Click="SubmitButtonClicked">Submit</AppBarButton>
         </StackPanel>
         <AppBarButton VerticalAlignment="Bottom" Icon="Back" Label="Back" Margin="20,0,0,10" Click="BackButton_Pressed"></AppBarButton>
         

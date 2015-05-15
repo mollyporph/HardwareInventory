@@ -72,10 +72,10 @@ namespace HardwareInventory.Pages
 
         }
 
-        private void GetSuggestedImages()
+        private async void GetSuggestedImages()
         {
           _suggestionImageTimer.Stop();
-            var imageUrls = HardwareRepository.GetSuggestedImagesForItem(ViewModel.Item.Name);
+            var imageUrls = await HardwareRepository.GetSuggestedImagesForItem(itemNameTextBox.Text);
             GoogleImageGrid.ItemsSource = imageUrls;
         }
 
@@ -115,12 +115,13 @@ namespace HardwareInventory.Pages
             newImage.UriSource = uri;
             ItemImage.Source = newImage;
         }
-        public  void EnableEditOrSave(object sender, RoutedEventArgs e)
+        public async void EnableEditOrSave(object sender, RoutedEventArgs e)
         {
             if (ViewModel.IsEditMode)
             {
+
                 //SaveButton Clicked
-                //await HardwareRepository.UpdateItem(this.DataContext as HardwareItem);
+                await HardwareRepository.UpdateItem(this.ViewModel.Item);
                
             }
             else

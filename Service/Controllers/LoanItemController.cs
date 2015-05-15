@@ -77,18 +77,22 @@ namespace dhcchardwareService.Controllers
             try
             {
                 LoanItemDTO current = await InsertAsync(item);
-                return CreatedAtRoute("Tables", new { id = current.Id }, current);
+                return CreatedAtRoute("Tables", new {id = current.Id}, current);
             }
             catch (DbEntityValidationException e)
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    Debug.WriteLine("Type {0} Sate {1} Errors:",eve.Entry.Entity.GetType().Name,eve.Entry.State);
+                    Debug.WriteLine("Type {0} Sate {1} Errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        Debug.WriteLine(" --prop {0}  fault {1}",ve.PropertyName,ve.ErrorMessage);
+                        Debug.WriteLine(" --prop {0}  fault {1}", ve.PropertyName, ve.ErrorMessage);
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
             }
             return null;
            

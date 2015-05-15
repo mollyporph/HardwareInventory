@@ -25,6 +25,7 @@ namespace dhcchardwareService.DataObjects
         public DateTime? LoanedAt { get; set; }
         public DateTime? ReturnedAt { get; set; }
         public bool IsReturned { get; set; }
+        public string HardwareItemDTOId { get; set; }
         public virtual HardwareItemDTO Item { get; set; } 
 
     }

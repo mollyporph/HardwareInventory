@@ -38,8 +38,7 @@ namespace HardwareInventory.Pages
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             TeamName = e.Parameter as string;
-            if (TeamName == null) return;
-            teamNameTextBlock.Text = TeamName;
+            teamNameTextBlock.Text = TeamName?? "";
             await RefreshViewModel();
         }
 

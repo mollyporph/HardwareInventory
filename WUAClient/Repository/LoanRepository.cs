@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -46,9 +47,53 @@ namespace HardwareInventory.Repository
 
         public static async Task ReturnItem(LoanItem item)
         {
-            var request = new {Id = item.Id};
-            await App.MobileService
-                .InvokeApiAsync("CustomLoanReturn", JToken.FromObject(request));
+            item.ReturnedAt = DateTime.Now;
+            item.IsReturned = true;
+            //To avoid conflicts
+            item.Item = null;
+            await LoanTable.UpdateAsync(item);
+        }
+
+        public static async void CreateLoan(string username, IEnumerable<string> hardWareItemList)
+        {
+            var availableItems = await HardwareRepository.GetHardwareItems();
+            foreach (var hwItem in hardWareItemList)
+            {
+                var newLoan = new LoanItem
+                {
+                    IsReturned = false,
+                    LoanedAt = DateTime.Now,
+                    LoanedBy = username
+                };
+                var hardwareItems = availableItems as HardwareItem[] ?? availableItems.ToArray();
+                if (hardwareItems.Select(x => x.Name.ToLower()).Contains(hwItem.ToLower()))
+                {
+                    newLoan.ItemId = hardwareItems.FirstOrDefault(x => string.Equals(x.Name, hwItem, StringComparison.CurrentCultureIgnoreCase)).Id;
+                }
+                else
+                {
+                    var newItem = new HardwareItem
+                    {
+                        Category = "",
+                        ImageUrl = "",
+                        Name = hwItem
+                    };
+                    await HardwareRepository.AddItem(newItem);
+                    newLoan.ItemId = newItem.Id;
+
+
+                }
+                try
+                {
+                    await LoanTable.InsertAsync(newLoan);
+                }
+                catch (Exception e)
+                {
+                    //Item allready exist, create duplicate
+                    newLoan.Item.Id = Guid.NewGuid().ToString();
+                    await LoanTable.InsertAsync(newLoan);
+                }
+            }
         }
     }
 }

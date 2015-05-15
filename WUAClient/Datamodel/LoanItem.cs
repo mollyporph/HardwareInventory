@@ -23,6 +23,8 @@ namespace HardwareInventory.Datamodel
         public DateTime? LoanedAt { get; set; }
         [JsonProperty(PropertyName = "ReturnedAt")]
         public DateTime? ReturnedAt { get; set; }
+        [JsonProperty(PropertyName = "hardwareItemDTOId")]
+        public string ItemId { get; set; }
         [JsonProperty(PropertyName = "Item")]
         public HardwareItem Item { get; set; }
     }

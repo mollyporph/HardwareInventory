@@ -29,16 +29,16 @@ namespace dhcchardwareService
             Database.SetInitializer(new dhcchardwareInitializer());
 
             //Lets never touch this again..
-            AutoMapper.Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<LoanItem, LoanItemDTO>()
-                    .ForMember(loanItemDTO => loanItemDTO.Item, map => map.MapFrom(loanItem => loanItem.Item));
-                cfg.CreateMap<LoanItemDTO, LoanItem>()
-                    .ForMember(loanItem => loanItem.Item, map => map.MapFrom(loanItemDTO => loanItemDTO.Item));
+            //AutoMapper.Mapper.Initialize(cfg =>
+            //{
+            //    cfg.CreateMap<LoanItem, LoanItemDTO>()
+            //        .ForMember(loanItemDTO => loanItemDTO.Item, map => map.MapFrom(loanItem => loanItem.Item));
+            //    cfg.CreateMap<LoanItemDTO, LoanItem>()
+            //        .ForMember(loanItem => loanItem.Item, map => map.MapFrom(loanItemDTO => loanItemDTO.Item));
 
-                cfg.CreateMap<HardwareItem, HardwareItemDTO>();
-                cfg.CreateMap<HardwareItemDTO, HardwareItem>();
-            });
+            //    cfg.CreateMap<HardwareItem, HardwareItemDTO>();
+            //    cfg.CreateMap<HardwareItemDTO, HardwareItem>();
+            //});
         }
     }
 
@@ -79,7 +79,7 @@ namespace dhcchardwareService
             {
                 Id = Guid.NewGuid().ToString(),
                 TeamName = "Dreamhack TV",
-                LoanedBy = "Someone",
+                LoanedBy = "Lindmark",
                 IsReturned = false,
                 LoanedAt = DateTime.Now,
                 Item = hwItemPersistedTPKabel
@@ -88,7 +88,7 @@ namespace dhcchardwareService
             {
                 Id = Guid.NewGuid().ToString(),
                 TeamName = "Dreamhack TV",
-                LoanedBy = "Someone",
+                LoanedBy = "Lindmark",
                 IsReturned = false,
                 LoanedAt = DateTime.Now,
                 Item = hwItemPersistedTPKabel
@@ -97,7 +97,7 @@ namespace dhcchardwareService
             {
                 Id = Guid.NewGuid().ToString(),
                 TeamName = "Dreamhack TV",
-                LoanedBy = "Somethree",
+                LoanedBy = "Mo3",
                 IsReturned = false,
                 LoanedAt = DateTime.Now,
                 Item = hwItemPersistedTPKabel

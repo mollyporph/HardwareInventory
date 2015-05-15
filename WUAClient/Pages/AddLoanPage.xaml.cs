@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -18,20 +21,28 @@ using HardwareInventory.Datamodel;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.System;
+using Windows.UI.Core;
 using HardwareInventory.Repository;
+using HardwareInventory.Utilities;
 
 namespace HardwareInventory.Pages
 {
 
     public sealed partial class AddLoanPage : Page
     {
+        public ObservableCollection<string> suggestedHardWareItems = new ObservableCollection<string>(); 
+        public ObservableCollection<HwItemNameViewModel> hardWareItemList = new ObservableCollection<HwItemNameViewModel>(); 
         public AddLoanPage()
         {
             this.InitializeComponent();
+            hardWareItemList.Add(new HwItemNameViewModel());
+            this.itemList.ItemsSource = hardWareItemList;
+            
 
         }
 
-        public async void Dismiss(object sender, RoutedEventArgs e)
+        public void Dismiss(object sender, RoutedEventArgs e)
         {
             userPanel.Visibility = Visibility.Collapsed;
             searchBox.Visibility = Visibility.Visible;
@@ -93,12 +104,48 @@ namespace HardwareInventory.Pages
             userPanel.Visibility = Visibility.Visible;
         }
 
+        public async void AutoSuggestBox_OnQuerySubmitted(AutoSuggestBox asb,
+            AutoSuggestBoxQuerySubmittedEventArgs asArgs)
+        {
+           // this.hardWareItemList.Add("");
+        }
+
+        public void SubmitButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var username = usernameTextBlock.Text;
+
+            LoanRepository.CreateLoan(username, hardWareItemList.Where(x =>!string.IsNullOrEmpty(x.Value)).Select(x => x.Value).ToList());
+        }
+
+        public async void ItemTextBox_KeyUp(object sender, KeyRoutedEventArgs ke)
+        {
+            if (ke.Key != VirtualKey.Enter) return;
+            this.hardWareItemList.Add(new HwItemNameViewModel());
+           //await Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+           // {
+           //     var textBoxes = VisualTreeTraverser.FindVisualChildren<TextBox>(itemList);
+           //     textBoxes.Last().Focus(FocusState.Keyboard);
+           // });
+
+        }
         public void BackButton_Pressed(object sender, RoutedEventArgs e)
         {
             if (Frame.CanGoBack)
             {
                 Frame.GoBack();
             }
+        }
+    }
+
+    public class HwItemNameViewModel : INotifyPropertyChanged
+    {
+        private string _value;
+        public string Value { get { return _value; } set { _value = value; OnPropertyChanged(); } }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

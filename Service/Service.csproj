@@ -200,7 +200,6 @@
     <Compile Include="Controllers\CustomRegistrationController.cs" />
     <Compile Include="Controllers\HardwareItemController.cs" />
     <Compile Include="Controllers\LoanItemController.cs" />
-    <Compile Include="Controllers\CustomLoanReturnController.cs" />
     <Compile Include="DataObjects\Account.cs" />
     <Compile Include="DataObjects\CrewMember.cs" />
     <Compile Include="DataObjects\LoanItem.cs" />
